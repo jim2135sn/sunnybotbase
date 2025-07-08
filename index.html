@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunnyBot</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- finna kms rn -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet"> <!-- this is for silly fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- this is to add icons (in this case only used for the discord logo) -->
+    <style>
+        body { /* everything in the styles relates to the same name in the "class" for other elements, this body is for the entire site */
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            overflow: hidden;
+            animation: spinIn 1s ease-out forwards;
+            opacity: 0;
+            transform-origin: center center;
+        }
+        .navbar-link {
+            color: #a0a0a0;
+            transition: color 0.3s ease;
+        }
+        .navbar-link:hover {
+            color: #ffffff;
+        }
+        .discord-icon-bg { /* holy yap */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="%232c2c2c" fill-opacity="0.5" d="M100 0C44.77 0 0 44.77 0 100s44.77 100 100 100 100-44.77 100-100S155.23 0 100 0zm24.75 142.25c-1.88 0-3.75-.75-5.12-2.12-1.38-1.38-2.12-3.25-2.12-5.13v-3.75c0-1.88.75-3.75 2.12-5.12 1.37-1.38 3.25-2.13 5.13-2.13h1.25c1.88 0 3.75.75 5.12 2.12 1.38 1.38 2.13 3.25 2.13 5.13v3.75c0 1.88-.75 3.75-2.12 5.12-1.38 1.38-3.25 2.13-5.13 2.13h-1.25zM75.25 142.25c-1.88 0-3.75-.75-5.12-2.12-1.38-1.38-2.12-3.25-2.12-5.13v-3.75c0-1.88.75-3.75 2.12-5.12 1.37-1.38 3.25-2.13 5.13-2.13h1.25c1.88 0 3.75.75 5.12 2.12 1.38 1.38 2.13 3.25 2.13 5.13v3.75c0 1.88-.75 3.75-2.12 5.12-1.38 1.38-3.25 2.13-5.13 2.13h-1.25zM100 100c-11.05 0-20 8.95-20 20s8.95 20 20 20 20-8.95 20-20-8.95-20-20-20z"/></svg>');
+            background-size: 100px;
+            background-repeat: repeat;
+            opacity: 0.1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .invite-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: white;
+            background-color: #7289da;
+            transition: transform 0.2s ease-in-out;
+            will-change: transform;
+        }
+
+        .invite-button:hover {
+            transform: scale(1.25);
+        }
+
+        .discord-logo-main {
+            width: 350px;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.5));
+        }
+
+        .music-notes {
+            position: absolute;
+            font-size: 2.5rem;
+            color: #e74c3c;
+            animation: floatAndFade 4s ease-out infinite;
+            opacity: 0;
+        }
+
+        .music-note-plus {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #1abc9c;
+            animation: floatAndFade 4s ease-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatAndFade { /* this is a part of the intro when you open the website */
+            0% { transform: translate(0, 0); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translate(50px, -100px); opacity: 0; }
+        }
+
+        @keyframes spinIn { /* this is also a part of the intro when u open the site */
+            0% {
+                opacity: 0;
+                transform: rotateY(-90deg) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: rotateY(0deg) scale(1);
+            }
+        }
+
+        .music-note-1 { top: 40%; left: 10%; animation-delay: 0s; } /* this is the shit that shows next to the logo hehehehe */
+        .music-note-2 { top: 50%; left: 12%; animation-delay: 0.5s; }
+        .music-note-3 { top: 35%; left: 15%; animation-delay: 1s; }
+        .music-note-4 { top: 60%; left: 8%; animation-delay: 1.5s; }
+        .music-note-5 { top: 45%; left: 18%; animation-delay: 2s; }
+
+        .plus-note-1 { top: 55%; left: 15%; animation-delay: 0.3s; }
+        .plus-note-2 { top: 48%; left: 8%; animation-delay: 1.2s; }
+
+        @media (max-width: 768px) {
+            .discord-logo-main {
+                width: 250px;
+            }
+            .text-6xl {
+                font-size: 3rem;
+            }
+            .text-4xl {
+                font-size: 2rem;
+            }
+            .invite-button {
+                padding: 0.8rem 2rem;
+                font-size: 1.1rem;
+            }
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen">
+    <div class="discord-icon-bg"></div>
+
+    <nav class="relative z-10 flex items-center justify-between p-6">
+        <div class="text-2xl font-extrabold">SunnyBot</div>
+        <div class="flex items-center space-x-8">
+            <a href="/info/faq.html" class="navbar-link">FAQ</a>
+            <a href="/info/cmd.html" class="navbar-link">COMMANDS</a>
+            <a href="/dash/main.html" class="navbar-link">DASHBOARD</a> <!-- silly redirects -->
+        </div>
+    </nav>
+
+    <section class="relative z-10 flex items-center justify-center min-h-[calc(100vh-80px)]"> <!-- logo + silly music notes  -->
+        <div class="flex flex-col items-center justify-center w-full max-w-7xl px-4 md:flex-row md:justify-around">
+            <div class="relative flex items-center justify-center w-full md:w-1/2">
+                <img src="https://i.imgur.com/tHvvOJM.png" alt="SunnyBot Logo" class="discord-logo-main">
+                <span class="music-notes music-note-1">&#9835;</span>
+                <span class="music-notes music-note-2">&#9833;</span>
+                <span class="music-notes music-note-3">&#9834;</span>
+                <span class="music-notes music-note-4">&#9836;</span>
+                <span class="music-note-plus plus-note-1">+</span>
+                <span class="music-note-plus plus-note-2">+</span>
+            </div>
+
+            <div class="hero-text w-full md:w-1/2 text-center md:text-left mt-8 md:mt-0"> <!-- name, use, and invite -->
+                <h1 class="text-6xl font-extrabold leading-tight mb-4">
+                    SUNNYBOT <br>
+                    <span class="text-4xl font-bold">MUSIC AND LEVELING</span>
+                </h1>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-8">
+                    <button class="invite-button" id="inviteButton" onclick="window.location='https://discord.com/oauth2/authorize?client_id=1029527116536107059'"> <!-- make sure this is the real one 🤑🤑🤑 -->
+                        <i class="fab fa-discord fa-lg mr-2"></i>
+                        INVITE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inviteButton = document.getElementById('inviteButton'); // pro tip: the invite button is an invite button
+            let isHovered = false; // 90% of this is to make the invite button grow when the mouse gets closer to it
+
+            const maxProximityScale = 1.15;
+            const minProximityScale = 1;
+            const proximityInfluenceRadius = 300;
+
+            document.addEventListener('mousemove', (e) => {
+                if (isHovered) {
+                    return;
+                }
+
+                const rect = inviteButton.getBoundingClientRect();
+                const buttonCenterX = rect.left + rect.width / 2;
+                const buttonCenterY = rect.top + rect.height / 2;
+
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+
+                const deltaX = mouseX - buttonCenterX;
+                const deltaY = mouseY - buttonCenterY;
+
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+                let scale = minProximityScale;
+                if (distance < proximityInfluenceRadius) {
+                    const normalizedDistance = distance / proximityInfluenceRadius;
+                    scale = maxProximityScale - (maxProximityScale - minProximityScale) * normalizedDistance;
+                    scale = Math.max(minProximityScale, Math.min(maxProximityScale, scale));
+                } else {
+                    scale = minProximityScale;
+                }
+
+                inviteButton.style.transform = `scale(${scale})`;
+            });
+
+            document.body.addEventListener('mouseleave', () => {
+                if (!isHovered) {
+                    inviteButton.style.transform = '';
+                }
+            });
+
+            inviteButton.addEventListener('mouseenter', () => {
+                isHovered = true;
+            });
+
+            inviteButton.addEventListener('mouseleave', () => {
+                isHovered = false;
+                inviteButton.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>
