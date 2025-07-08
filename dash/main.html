@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunnyBot - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- THIS IS DEMO ONLY AND DOES NOT WORK! -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .dashboard-card {
+            background-color: #2a2a2a;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #7289da;
+        }
+        .back-link {
+            color: #7289da;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #9b59b6;
+        }
+        .progress-bar-bg {
+            background-color: #4a4a4a;
+            border-radius: 9999px;
+            height: 1rem;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            background-color: #1abc9c;
+            height: 100%;
+            border-radius: 9999px;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #202225;
+            padding: 1.5rem 1rem;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.4rem;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .sidebar-link:hover {
+            background-color: #36393f;
+            color: #ffffff;
+        }
+        .sidebar-link.active {
+            background-color: #5865f2;
+            color: #ffffff;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+            width: calc(100% - 250px);
+        }
+        .login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .login-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: white;
+            background-color: #7289da;
+            transition: background-color 0.2s ease;
+        }
+        .login-button:hover {
+            background-color: #677bc4;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginScreen" class="login-screen">
+        <h2 class="text-3xl font-bold mb-8">Welcome to SunnyBot Dashboard</h2>
+        <button id="signInButton" class="login-button">
+            <i class="fab fa-discord fa-lg mr-2"></i>
+            Sign in with Discord
+        </button>
+    </div>
+
+    <div id="dashboardContent" class="hidden flex">
+        <div class="sidebar">
+            <div class="text-2xl font-extrabold mb-8">SunnyBot</div>
+            <a href="#" class="sidebar-link active" data-target="overview">
+                <i class="fas fa-home mr-3"></i>
+                Overview
+            </a>
+            <a href="#" class="sidebar-link" data-target="music">
+                <i class="fas fa-music mr-3"></i>
+                Music
+            </a>
+            <a href="#" class="sidebar-link" data-target="leveling">
+                <i class="fas fa-chart-line mr-3"></i>
+                Leveling
+            </a>
+            <a href="#" class="sidebar-link" data-target="moderation">
+                <i class="fas fa-shield-alt mr-3"></i>
+                Moderation
+            </a>
+            <a href="#" class="sidebar-link" data-target="settings">
+                <i class="fas fa-cog mr-3"></i>
+                Settings
+            </a>
+            <div class="mt-auto">
+                <a href="/" class="sidebar-link">
+                    <i class="fas fa-arrow-left mr-3"></i>
+                    Back to Main Site
+                </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <a href="/" class="back-link">&larr; Back to Home</a>
+            <h1 class="text-4xl font-extrabold text-center mb-8">SunnyBot Dashboard</h1>
+
+            <div id="overview" class="content-section active grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="dashboard-card col-span-1 md:col-span-2 lg:col-span-1">
+                    <h2 class="card-title">Server Overview</h2>
+                    <p class="text-gray-300 mb-2">Total Members: <span class="font-bold text-white">12,345</span></p>
+                    <p class="text-gray-300 mb-2">Total Channels: <span class="font-bold text-white">120</span></p>
+                    <p class="text-gray-300">Online Users: <span class="font-bold text-white">8,765</span></p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h2 class="card-title">Music Control</h2>
+                    <div class="flex justify-center space-x-4">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">Play</button>
+                        <button class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition">Pause</button>
+                        <button class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition">Skip</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h2 class="card-title">Average Level</h2>
+                    <p class="text-gray-300 mb-2">Server Average: <span class="font-bold text-white">12.5</span></p>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 60%;"></div>
+                    </div>
+                    <p class="text-gray-400 text-sm mt-1">Overall server progression.</p>
+                </div>
+
+                <div class="dashboard-card col-span-1 md:col-span-2">
+                    <h2 class="card-title">Recent Activity</h2>
+                    <ul class="text-gray-300 text-sm">
+                        <li class="mb-1"><span class="text-green-400">[2:30 PM]</span> User joined the server.</li>
+                        <li class="mb-1"><span class="text-purple-400">[2:25 PM]</span> SunnyBot played "Awesome Song".</li>
+                        <li class="mb-1"><span class="text-yellow-400">[2:20 PM]</span> User achieved Level 14.</li>
+                        <li class="mb-1"><span class="text-red-400">[2:15 PM]</span> Moderator kicked a user.</li>
+                        <li><span class="text-green-400">[2:10 PM]</span> New channel created.</li>
+                    </ul>
+                </div>
+
+                <div class="dashboard-card">
+                    <h2 class="card-title">Settings</h2>
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-gray-300">Welcome Messages</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer" checked>
+                            <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-300">XP Gain</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="music" class="content-section">
+                <h2 class="text-3xl font-bold mb-6 text-center">Music Settings</h2>
+                <div class="dashboard-card">
+                    <h3 class="card-title">Music Playback Control</h3>
+                    <p class="text-gray-300 mb-4">Configure how music plays in your server.</p>
+                    <div class="flex flex-col space-y-4">
+                        <div>
+                            <label class="block text-gray-400 text-sm font-bold mb-2" for="default-volume">
+                                Default Volume
+                            </label>
+                            <input type="range" id="default-volume" min="0" max="100" value="50" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                            <p class="text-gray-400 text-sm mt-1">Current: 50%</p>
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 text-sm font-bold mb-2" for="max-queue-length">
+                                Max Queue Length
+                            </label>
+                            <input type="number" id="max-queue-length" value="20" min="1" class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">Allow DJ Role Only</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="leveling" class="content-section">
+                <h2 class="text-3xl font-bold mb-6 text-center">Leveling Settings</h2>
+                <div class="dashboard-card">
+                    <h3 class="card-title">XP Configuration</h3>
+                    <p class="text-gray-300 mb-4">Adjust how users gain experience points.</p>
+                    <div class="flex flex-col space-y-4">
+                        <div>
+                            <label class="block text-gray-400 text-sm font-bold mb-2" for="xp-per-message">
+                                XP per Message
+                            </label>
+                            <input type="number" id="xp-per-message" value="10" min="1" class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 text-sm font-bold mb-2" for="xp-per-minute-vc">
+                                XP per Minute in Voice Channel
+                            </label>
+                            <input type="number" id="xp-per-minute-vc" value="5" min="0" class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">Enable Level Up Announcements</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="moderation" class="content-section">
+                <h2 class="text-3xl font-bold mb-6 text-center">Moderation Settings</h2>
+                <div class="dashboard-card">
+                    <h3 class="card-title">Automod Configuration</h3>
+                    <p class="text-gray-300 mb-4">Set up rules for automatic moderation.</p>
+                    <div class="flex flex-col space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">Anti-Spam</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">Bad Words Filter</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="block text-gray-400 text-sm font-bold mb-2" for="mute-duration">
+                                Default Mute Duration (minutes)
+                            </label>
+                            <input type="number" id="mute-duration" value="60" min="1" class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settings" class="content-section">
+                <h2 class="text-3xl font-bold mb-6 text-center">General Settings</h2>
+                <div class="dashboard-card">
+                    <h3 class="card-title">Bot Preferences</h3>
+                    <p class="text-gray-300 mb-4">Customize general bot behavior.</p>
+                    <div class="flex flex-col space-y-4">
+                        <div>
+                            <label class="block text-gray-400 text-sm font-bold mb-2" for="bot-prefix">
+                                Bot Prefix
+                            </label>
+                            <input type="text" id="bot-prefix" value="sun$" class="w-full p-2 rounded-md bg-gray-700 border border-gray-600 text-white">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-300">Enable DM Notifications</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" value="" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginScreen = document.getElementById('loginScreen');
+            const signInButton = document.getElementById('signInButton');
+            const dashboardContent = document.getElementById('dashboardContent');
+            const sidebarLinks = document.querySelectorAll('.sidebar-link[data-target]');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            signInButton.addEventListener('click', () => {
+                loginScreen.classList.add('hidden');
+                dashboardContent.classList.remove('hidden');
+                dashboardContent.classList.add('flex');
+                showSection('overview');
+            });
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.dataset.target;
+
+                    sidebarLinks.forEach(navLink => navLink.classList.remove('active'));
+                    link.classList.add('active');
+
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+
+            function showSection(sectionId) {
+                contentSections.forEach(section => section.classList.remove('active'));
+                document.getElementById(sectionId).classList.add('active');
+
+                sidebarLinks.forEach(link => {
+                    if (link.dataset.target === sectionId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
