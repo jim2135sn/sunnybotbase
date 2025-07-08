@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunnyBot - Commands</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet"> <!-- idk what to put here either tbh its pretty self explanatory -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .command-section {
+            background-color: #2a2a2a;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: #7289da;
+        }
+        .command-item {
+            background-color: #3a3a3a;
+            border-radius: 0.3rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .command-name {
+            font-weight: 600;
+            color: #ffffff;
+            margin-right: 1rem;
+            min-width: 120px;
+        }
+        .command-description {
+            color: #d1d5db;
+            flex-grow: 1;
+        }
+        .back-link {
+            color: #7289da;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #9b59b6;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen">
+    <div class="container">
+        <a href="/" class="back-link">&larr; Back to Home</a>
+        <h1 class="text-4xl font-extrabold text-center mb-8">SunnyBot Commands</h1>
+
+        <div class="command-section">
+            <h2 class="section-title">Audio</h2>
+            <div class="command-item">
+                <span class="command-name">/clear</span>
+                <span class="command-description">Clears all songs in queue.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/connect</span>
+                <span class="command-description">Makes the bot join a voice channel.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/debug</span>
+                <span class="command-description">A user command that gets debug information about the bot.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/disconnect</span>
+                <span class="command-description">Makes the bot leave a voice channel.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/list</span>
+                <span class="command-description">List all songs in queue.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/pause</span>
+                <span class="command-description">Pause the current audio playing.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/play [song name/URL]</span>
+                <span class="command-description">Plays a music url in a voice channel.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/playing</span>
+                <span class="command-description">Sees the song that is in the queue.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/remove</span>
+                <span class="command-description">Remove a song in the queue.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/seek</span>
+                <span class="command-description">Seeks to the seconds in the currently playing song.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/stop</span>
+                <span class="command-description">Stop audio that is currently playing.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/volume [0-100]</span>
+                <span class="command-description">Sets the volume of the currently playing song.</span>
+            </div>
+        </div>
+
+        <div class="command-section">
+            <h2 class="section-title">FunOrRandom</h2>
+            <div class="command-item">
+                <span class="command-name">/8ball</span>
+                <span class="command-description">The magic 8ball command. Used for yes or no answers.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/avatar</span>
+                <span class="command-description">Get the user's avatar.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/buzzify</span>
+                <span class="command-description">Generates a buzz lightyear meme.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/d</span>
+                <span class="command-description">Roles a dice between two values.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/echo</span>
+                <span class="command-description">Makes the bot say anything, and I mean anything.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/meme</span>
+                <span class="command-description">Displays a random meme.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/ping</span>
+                <span class="command-description">Pings the bot, along with latency information.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/ship</span>
+                <span class="command-description">Ships you and another user!</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/to</span>
+                <span class="command-description">Converts one format to another.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/translate</span>
+                <span class="command-description">Translates a message based on message id or text.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/tts</span>
+                <span class="command-description">Says something through GTTS/text-to-speech (send an attachment w...).</span>
+            </div>
+        </div>
+
+        <div class="command-section">
+            <h2 class="section-title">Games</h2>
+            <div class="command-item">
+                <span class="command-name">/poke</span>
+                <span class="command-description">Query Information about the pokemon franchise.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/rank</span>
+                <span class="command-description">View rank information.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/rankconfig</span>
+                <span class="command-description">Configurate rank data for this server.</span>
+            </div>
+        </div>
+
+        <div class="command-section">
+            <h2 class="section-title">Moderation</h2>
+            <div class="command-item">
+                <span class="command-name">/ban</span>
+                <span class="command-description">Bans a user.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/info</span>
+                <span class="command-description">Information command for checking servers & Member.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/kick</span>
+                <span class="command-description">Kicks a user from the server.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/logs</span>
+                <span class="command-description">Lists audit logs entries for a member.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/purge</span>
+                <span class="command-description">Purge a certain amount of messages in a channel.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/slowmode</span>
+                <span class="command-description">Set the channel slowmode.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/voicekick</span>
+                <span class="command-description">Kicks a user from the voice channel.</span>
+            </div>
+        </div>
+
+        <div class="command-section">
+            <h2 class="section-title">No Category</h2>
+            <div class="command-item">
+                <span class="command-name">/announce</span>
+                <span class="command-description"></span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/eval</span>
+                <span class="command-description"></span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/exclude</span>
+                <span class="command-description"></span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/help</span>
+                <span class="command-description">Shows this message.</span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/prefix</span>
+                <span class="command-description"></span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/searchdb</span>
+                <span class="command-description"></span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/sync</span>
+                <span class="command-description"></span>
+            </div>
+            <div class="command-item">
+                <span class="command-name">/viewdb</span>
+                <span class="command-description"></span>
+            </div>
+        </div>
+
+        <p class="text-center text-gray-400 mt-8">Type sun$help command for more info on a command.</p>
+        <p class="text-center text-gray-400">You can also type sun$help category for more info on a category.</p>
+    </div>
+</body>
+</html>
